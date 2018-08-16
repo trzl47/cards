@@ -1,0 +1,14 @@
+version: '3'
+services:
+  golang:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: golang
+    container_name: golang
+    restart: unless-stopped
+    volumes:
+      # - ./golang:/src
+      - ./:/src:z  # z needed for selinux
+    ports:
+      - 80:8080 # golang app
