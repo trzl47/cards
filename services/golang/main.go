@@ -1,13 +1,30 @@
 package main
 
+import "fmt"
+
 func main() {
-	cards := newDeckFromFile("my_cards")
+	gamePrompt()
+	cards := newDeck()
 	cards.shuffle()
 	cards.print()
-	// hand, remaningDeck := deal(cards, 5)
 
-	// hand.print()
-	// remaningDeck.print()
-	// fmt.Println(cards.toString())
-	// cards.saveToFile("my_cards")
+}
+
+type game struct {
+	name    string
+	aceHigh bool
+}
+
+func gamePrompt() int {
+	games := []game{{name: "Blackjack", aceHigh: false}}
+	fmt.Println("Welcome!")
+	fmt.Println("Which game would you like to play?")
+	for i, option := range games {
+		fmt.Println(i, option.name)
+	}
+	fmt.Print("Choose game: ")
+	var gameChoice int
+	fmt.Scanln(&gameChoice)
+	fmt.Print(gameChoice)
+	return gameChoice
 }
